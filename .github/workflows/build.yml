@@ -90,6 +90,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/nextgen' }}
+      - name: Allow untrusted SSL for broken repo
+        run: |
+          mkdir -p ~/.gradle
+          echo "systemProp.org.gradle.internal.network.ssl.allowUntrusted=true" >> ~/.gradle/gradle.properties
       - name: Build
         env:
           CI: true
@@ -163,6 +167,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/nextgen' }}
+      - name: Allow untrusted SSL for broken repo
+        run: |
+          mkdir -p ~/.gradle
+          echo "systemProp.org.gradle.internal.network.ssl.allowUntrusted=true" >> ~/.gradle/gradle.properties
       - name: Build
         env:
           CI: true
